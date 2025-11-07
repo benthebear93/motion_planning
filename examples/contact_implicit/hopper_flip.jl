@@ -5,7 +5,7 @@ include_model("hopper")
 model_ft = free_time_model(model)
 
 # Horizon
-T = 49
+T = 48
 Tm = 25
 
 # Time step
