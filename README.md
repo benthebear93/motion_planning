@@ -129,3 +129,12 @@ second-order friction cone
 - [ ] analytical velocity objective gradient
 - [ ] large-scale augmented Lagrangian solver
 - [ ] contact simulator
+
+## Build local and run
+julia --project=.
+using Pkg
+Pkg.build("motion_planning")
+using motion_planning
+Core.eval(motion_planning,
+           :(include("examples/contact_implicit/hopper3D.jl"))
+       )
