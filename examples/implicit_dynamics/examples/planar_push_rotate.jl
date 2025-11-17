@@ -138,16 +138,16 @@ x̄, ū = nominal_trajectory(prob)
 J = 0.0
 x = x̄
 u = ū
-for t = 1:T
-    if t < T
-        J += x[t]' * Q[t] * x[t] + q[t]' * x[t] + u[t][1:2]' * R[t][1:2, 1:2] * u[t][1:2] + r[t][1:2]' * u[t][1:2]
-    elseif t == T
-        J += x[t]' * Q[t] * x[t] + q[t]' * x[t]
-    else
-        J += 0.0
-    end
-end
-@show J
+# for t = 1:T
+#     if t < T
+#         J += x[t]' * Q[t] * x[t] + q[t]' * x[t] + u[t][1:2]' * R[t][1:2, 1:2] * u[t][1:2] + r[t][1:2]' * u[t][1:2]
+#     elseif t == T
+#         J += x[t]' * Q[t] * x[t] + q[t]' * x[t]
+#     else
+#         J += 0.0
+#     end
+# end
+# @show J
 
 q̄ = state_to_configuration(x)
 v̄ = [(q̄[t+1] - q̄[t]) ./ h for t = 1:length(q̄)-1]

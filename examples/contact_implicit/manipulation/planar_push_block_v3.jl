@@ -123,12 +123,22 @@ visualize!(vis, model,
 plot(hcat(q̄...)', color = :red, width = 1.0, labels = "")
 plot(hcat([ū..., ū[end]]...)[model.idx_u[1:2], :]', linetype = :steppost, color = :black, width = 1.0, labels = "")
 
-# q_array = hcat(q...)
-# u_array = hcat(u...)
+using JSON
+q_array = hcat(q...)
+u_array = hcat(u...)
+γ_array = hcat(γ...)
+b_array = hcat(b...)
 
-# traj = Dict("q" => q_array, "u" => u_array)
+traj = Dict("q" => q_array, "u" => u_array, "γ" => γ_array, "b" => b_array)
 
 # using NPZ
 # i = 2
 # file_path = joinpath(pwd(), "examples/contact_implicit/manipulation/", "traj$i.npz")
 # npzwrite(file_path, traj)
+
+i = 2
+file_path = joinpath(pwd(), "examples/contact_implicit/manipulation/", "traj$i.json")
+
+open(file_path, "w") do io
+    JSON.print(io, traj)     # pretty 출력 원하면 JSON.print(io, traj; indent=2)
+end

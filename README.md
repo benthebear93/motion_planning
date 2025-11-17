@@ -138,3 +138,7 @@ using motion_planning
 Core.eval(motion_planning,
            :(include("examples/contact_implicit/hopper3D.jl"))
        )
+
+Core.eval(motion_planning,
+           :(include("examples/contact_implicit/manipulation/planar_push_block_v3.jl"))
+       )
